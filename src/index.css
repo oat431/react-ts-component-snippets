@@ -1,0 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Sarabun:wght@100;200&display=swap');
+@import "tailwindcss";
+@plugin "daisyui" {
+    themes: emerald --default;
+}
+
+html {
+    font-family: 'Sarabun', sans-serif;
+    scroll-behavior: smooth;
+}
