@@ -1,3 +1,4 @@
+import { Link } from "react-router"
 function HeroSection() {
     return (
         <div className="hero bg-base-200 min-h-screen">
@@ -7,7 +8,7 @@ function HeroSection() {
                     <p className="py-6">
                         React + TypeScript + Vite + DaisyUI component collection for learning and practice.
                     </p>
-                    <button className="btn btn-primary">Get Started</button>
+                    <Link to="/contact" className="btn btn-primary">Get Started</Link>
                 </div>
             </div>
         </div>
