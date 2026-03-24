@@ -9,7 +9,7 @@ This project provides a collection of React TypeScript component snippets. These
 - Effect Hooks Snippets
 - Custom Hook Snippets
 - Context API Snippets
-- And more!
+- JWT Authentication Snippets (Login, Register, Logout, Email Verification, Reset Password)
 
 ## Components
 
