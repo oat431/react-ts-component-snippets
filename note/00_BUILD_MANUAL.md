@@ -21,7 +21,7 @@
 
 ---
 
-## Phase 0 — Quick fixes ✅ (15 min)
+## Phase 0 — Quick fixes ✅ DONE ~11:40
 
 **Goal:** kill credibility-damaging bugs before adding anything.
 
@@ -153,12 +153,25 @@
 ---
 
 ## Timebox ledger
-| Phase | Budget | Actual |
-|---|---|---|
-| 0 | 0:15 | 0:10 |
-| 1 | 0:40 | — |
-| 2 | 1:00 | — |
-| 3 | 0:30 | — |
-| 4 | 1:00 | — |
-| 5 | 0:30 | — |
-| 6 | 0:15 | — |
+| Phase | Budget | Actual | Status |
+|---|---|---|---|
+| 0 | 0:15 | 0:10 | ✅ done — a11y labels, dead link removed |
+| 1 | 0:40 | 0:25 | ✅ done — MSW demo mode, login validation + a11y + password toggle |
+| 2 | 1:00 | 0:35 | ✅ done — 8 hooks (added useInterval) + playground |
+| 3 | 0:30 | 0:20 | ✅ done — cartSlice + store + badge isolation demo |
+| 4 | 1:00 | 0:35 | ✅ done — 26 tests green (5 files), renderWithProviders util |
+| 5 | 0:30 | 0:20 | ✅ done — 4 perf panels + ErrorBoundary; useMediaQuery rewritten on useSyncExternalStore |
+| 6 | 0:15 | 0:15 | ✅ done — CI on dev, README reality rewrite, pushed 12:05 |
+
+## Deviations from plan (all improvements)
+- **useMediaQuery rewritten on `useSyncExternalStore`** — lint flagged the effect+setState pattern; the modern API is both correct and a better interview answer.
+- **useInterval added** (8 hooks, not 7) — pairs with usePrevious as the stale-closure demos.
+- **APIClient interceptors typed** with `isAxiosError` narrowing — lint-driven, real robustness win.
+- **eslint react-hooks v7 (compiler rules)** surfaced `set-state-in-effect` / `refs-in-render` violations — fixed with better code where possible, documented inline disables where the pattern IS the lesson (usePrevious, RenderCount, session restore).
+- **renderWithProviders test utility** — pages render NavBar → CartBadge, so every page test needs the full provider stack; the utility encodes that.
+
+## Final state (2026-08-19 ~12:05)
+- Gates: lint 0 errors · 26/26 tests · build clean — all green locally
+- Pushed: `dev` @ 17410d7 (CI: lint → build → test)
+- Demo credentials: demo / password
+
