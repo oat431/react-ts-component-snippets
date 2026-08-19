@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { isAxiosError } from "axios";
 
 const baseURL: string = (import.meta.env.RTCS_API_URL as string) || "http://localhost:8003/api/v1";
 
@@ -17,8 +17,8 @@ api.interceptors.request.use(
         }
         return config;
     },
-    (error) => {
-        return Promise.reject(error);
+    (error: unknown) => {
+        return Promise.reject(error instanceof Error ? error : new Error(String(error)));
     }
 );
 
@@ -26,12 +26,13 @@ api.interceptors.response.use(
     (response) => {
         return response;
     },
-    (error) => {
-        if (error.response && error.response.status === 401) {
+    (error: unknown) => {
+        // Typed narrowing: axios errors carry the response; unknowns don't.
+        if (isAxiosError(error) && error.response?.status === 401) {
             console.error("Unauthorized! Token may be expired.");
             window.dispatchEvent(new Event("auth-unauthorized"));
         }
-        return Promise.reject(error);
+        return Promise.reject(error instanceof Error ? error : new Error(String(error)));
     }
 );
 

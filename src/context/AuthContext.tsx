@@ -14,10 +14,13 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     const [token, setToken] = useState<string | null>(null);
     const [refreshToken, setRefreshToken] = useState<string | null>(null);
 
-    // Initialize from localStorage on mount
+    // Initialize from localStorage on mount.
+    // Lazy-init alternative rejected: reading localStorage during render makes
+    // hydration inconsistent (server has no localStorage) — effect is deliberate.
     useEffect(() => {
         const storedToken = localStorage.getItem("jwt_token");
         const storedRefreshToken = localStorage.getItem("refresh_token");
+        // eslint-disable-next-line react-hooks/set-state-in-effect -- one-time session restore; documented above
         if (storedToken) setToken(storedToken);
         if (storedRefreshToken) setRefreshToken(storedRefreshToken);
     }, []);

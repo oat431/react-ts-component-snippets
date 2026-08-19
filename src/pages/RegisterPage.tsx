@@ -24,7 +24,7 @@ export default function RegisterPage() {
                 setSuccessMessage(
                     `Account created! A verification email has been sent to ${response.data.email}. Redirecting to login...`
                 );
-                setTimeout(() => navigate("/login"), 3000);
+                setTimeout(() => { void navigate("/login"); }, 3000);
             } else {
                 setError(response.error?.message ?? "Registration failed. Please try again.");
             }
@@ -48,28 +48,33 @@ export default function RegisterPage() {
                     <div className="alert alert-success text-sm mb-2 py-2">{successMessage}</div>
                 )}
 
-                <label className="label">Username</label>
+                <label className="label" htmlFor="register-username">Username</label>
                 <input
+                    id="register-username"
                     type="text"
                     className="input"
                     placeholder="Username"
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
                     disabled={isLoading || !!successMessage}
+                    autoComplete="username"
                 />
 
-                <label className="label">Email</label>
+                <label className="label" htmlFor="register-email">Email</label>
                 <input
+                    id="register-email"
                     type="email"
                     className="input"
                     placeholder="you@example.com"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     disabled={isLoading || !!successMessage}
+                    autoComplete="email"
                 />
 
-                <label className="label">Password</label>
+                <label className="label" htmlFor="register-password">Password</label>
                 <input
+                    id="register-password"
                     type="password"
                     className="input"
                     placeholder="Password"

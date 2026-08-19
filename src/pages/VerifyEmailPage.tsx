@@ -14,7 +14,7 @@ export default function VerifyEmailPage() {
         const token = params.get("token");
 
         if (!token) {
-            setState("error");
+            setState("error"); // eslint-disable-line react-hooks/set-state-in-effect -- sync with URL param on mount
             setMessage("No verification token provided in the URL.");
             return;
         }
